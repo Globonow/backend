@@ -1,3 +1,3 @@
-import app from "./app";
+import server from './app';
 
-app.listen(5000);
+server.listen(5000);
