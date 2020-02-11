@@ -1,4 +1,5 @@
 import User from '../app/models/User';
+import Admin from '../app/models/Admin';
 
 export default {
   secret: process.env.APP_SECRET,
@@ -12,4 +13,5 @@ export const guards = {
 
 export const providers = {
   user: User,
+  admin: Admin,
 };

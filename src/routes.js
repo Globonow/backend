@@ -23,4 +23,8 @@ routes.post('/sessions', validateSessionStore, UserSessionController.store);
 routes.post('/users', validateUserStore, UserController.store);
 routes.post('/users', validateUserUpdate, UserController.update);
 
+routes.get('/guard', authMiddleware('admin'), (req, res) =>
+  res.json({ hello: 'world' })
+);
+
 export default routes;
