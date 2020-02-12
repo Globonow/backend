@@ -1,7 +1,9 @@
-class FlashInfoHandler {
-  constructor(subject) {
-    this.subject = subject;
-  }
-}
+import FlashInfoSubject from './Subject';
 
-export default FlashInfoHandler;
+export default io => {
+  const emitter = new FlashInfoSubject(io);
+
+  const socket = io.of('flashinfos');
+
+  socket.on('connection', emitter.example);
+};

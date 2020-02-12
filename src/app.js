@@ -9,6 +9,8 @@ import 'express-async-errors';
 
 import routes from './routes';
 
+import flashInfoHandler from './app/ws/FlashInfos/Handlers';
+
 import './database';
 
 class App {
@@ -35,7 +37,12 @@ class App {
 
   socket() {
     this.io = socketio(this.server);
+    flashInfoHandler(this.io);
   }
 }
 
-export default new App().server;
+const app = new App();
+
+export const io = app.io;
+
+export default app.server;
