@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { promisify } from 'util';
 
-import authConfig, { guards, providers } from '../../config/auth';
+import authConfig from '../../config/auth';
 
 export default guard => {
   return async (req, res, next) => {
@@ -19,9 +19,13 @@ export default guard => {
       req.userId = decoded.id;
       const tokenGuard = decoded.guard;
 
-      if (tokenGuard === guard) {
-        return next();
+      if (!(tokenGuard === guard)) {
+        return res
+          .status(401)
+          .json({ error: `You don't have permissions to access this route` });
       }
+
+      return next();
     } catch (err) {
       return res.status(401).json({ error: 'Token Invalid' });
     }
