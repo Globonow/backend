@@ -5,9 +5,11 @@ import multerConfig from '../config/multer';
 const upload = multer(multerConfig);
 
 import users from './users';
+import flashInfos from './flashInfos';
 
 const routes = new Router();
 
-routes.use('/', users);
+routes.use('/users', users);
+routes.use('/flash-infos', flashInfos);
 
 export default routes;
