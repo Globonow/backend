@@ -5,5 +5,8 @@ export default io => {
 
   const socket = io.of('flashinfos');
 
-  socket.on('connection', emitter.subscribe);
+  socket.on('connection', socket => {
+    emitter.subscribe(socket);
+    socket.sendFlashInfosToConnectedSocket();
+  });
 };
