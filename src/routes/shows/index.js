@@ -2,6 +2,8 @@ import { Router } from 'express';
 
 import ShowController from '../../app/controllers/ShowController';
 
+import upload from '../../app/services/upload';
+
 const routes = new Router();
 
 routes.get('/', ShowController.index);
