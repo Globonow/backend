@@ -3,10 +3,11 @@ import mongoose from 'mongoose';
 
 import User from '../app/models/User';
 import Admin from '../app/models/Admin';
+import Show from '../app/models/Show';
 
 import databaseConfig from '../config/database';
 
-const models = [User, Admin];
+const models = [User, Admin, Show];
 
 class Database {
   constructor() {

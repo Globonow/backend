@@ -1,8 +1,8 @@
-import Show from '../schemas/Show';
+import Show from '../models/Show';
 
 class ShowController {
   async index(req, res) {
-    const shows = await Show.find({});
+    const shows = await Show.findAll();
 
     return res.json(shows);
   }
@@ -10,18 +10,18 @@ class ShowController {
   async show(req, res) {
     const { id } = req.params;
 
-    const show = await Show.findById(id);
+    const show = await Show.findByPk(id);
 
     return res.json(show);
   }
 
   async store(req, res) {
-    const { name, image, description } = req.body;
+    const { name, file_id, description } = req.body;
 
     const show = await Show.create({
       name,
-      image,
       description,
+      file_id,
     });
 
     return res.json(show);
@@ -29,25 +29,25 @@ class ShowController {
 
   async update(req, res) {
     const { id } = req.params;
-    const { name, image, description } = req.body;
+    const { name, file_id, description } = req.body;
 
-    const show = await Show.findByIdAndUpdate(
-      id,
-      {
-        name,
-        image,
-        description,
-      },
-      { new: true }
-    );
+    const show = await Show.findByPk(id);
 
-    return res.json(show);
+    const updatedShow = await show.update({
+      name,
+      description,
+      file_id,
+    });
+
+    return res.json(updatedShow);
   }
 
   async destroy(req, res) {
     const { id } = req.params;
 
-    const show = await Show.findByIdAndDelete(id);
+    const show = await Show.findByPk(id);
+
+    await show.destroy();
 
     return res.json(show);
   }
