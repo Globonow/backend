@@ -1,11 +1,12 @@
 import Sequelize, { Model } from 'sequelize';
 
-class Show extends Model {
+class Schedule extends Model {
   static init(connection) {
     super.init(
       {
-        name: Sequelize.STRING,
-        description: Sequelize.TEXT,
+        show_id: Sequelize.INTEGER,
+        start: Sequelize.DATE,
+        end: Sequelize.DATE,
       },
       {
         sequelize: connection,
@@ -16,4 +17,4 @@ class Show extends Model {
   }
 }
 
-export default Show;
+export default Schedule;

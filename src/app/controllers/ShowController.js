@@ -16,12 +16,11 @@ class ShowController {
   }
 
   async store(req, res) {
-    const { name, file_id, description } = req.body;
+    const { name, description } = req.body;
 
     const show = await Show.create({
       name,
       description,
-      file_id,
     });
 
     return res.json(show);
@@ -29,14 +28,13 @@ class ShowController {
 
   async update(req, res) {
     const { id } = req.params;
-    const { name, file_id, description } = req.body;
+    const { name, description } = req.body;
 
     const show = await Show.findByPk(id);
 
     const updatedShow = await show.update({
       name,
       description,
-      file_id,
     });
 
     return res.json(updatedShow);
