@@ -5,10 +5,11 @@ import User from '../app/models/User';
 import Admin from '../app/models/Admin';
 import Show from '../app/models/Show';
 import Schedule from '../app/models/Schedule';
+import Episode from '../app/models/Episode';
 
 import databaseConfig from '../config/database';
 
-const models = [User, Admin, Show, Schedule];
+const models = [User, Admin, Show, Schedule, Episode];
 
 class Database {
   constructor() {
